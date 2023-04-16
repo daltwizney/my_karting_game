@@ -29,7 +29,7 @@ public class MyPackageGun : MonoBehaviour
 
             var force = (this.transform.forward + this.transform.up) * forceStrength;
 
-            packageRB.AddRelativeForce(force, ForceMode.Force);
+            packageRB.AddRelativeForce(force, ForceMode.Acceleration);
         }
     }
 }
