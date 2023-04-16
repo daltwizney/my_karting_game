@@ -32,7 +32,7 @@ public class CrashObject : TargetObject
                
         if (m_rigid) m_rigid.AddForce(forceUpOnCollide*Vector3.up, ForceMode.Impulse);
         
-        Objective.OnUnregisterPickup(this);
+        Objective.OnUnregisterPickup?.Invoke(this);
 
         TimeManager.OnAdjustTime(TimeGained);
     }
