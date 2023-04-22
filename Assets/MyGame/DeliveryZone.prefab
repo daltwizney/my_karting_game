@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 293263178896515844}
   - component: {fileID: 293263178896515847}
+  - component: {fileID: 8535714619454039316}
+  - component: {fileID: 3347378943288031481}
   m_Layer: 0
   m_Name: DeliveryZone
   m_TagString: Untagged
@@ -44,8 +46,33 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 12.596548, y: 12.48476, z: 1}
-  m_Center: {x: 0.011189222, y: -1.2423801, z: 0}
+  m_Size: {x: 6.4297667, y: 9.261415, z: 1}
+  m_Center: {x: 0.062306404, y: -0.98868227, z: 0.0000025041047}
+--- !u!114 &8535714619454039316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293263178896515841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6adc341279cee8f4ba998dae96c92544, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &3347378943288031481
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293263178896515841}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 8.9944515, y: 6.8411293, z: 1}
+  m_Center: {x: 0.024509668, y: -1.2434216, z: 0.0000023983005}
 --- !u!1 &956186756895158419
 GameObject:
   m_ObjectHideFlags: 0

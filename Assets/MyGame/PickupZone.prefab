@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3775096624762937718}
   - component: {fileID: 3775096624762937717}
-  - component: {fileID: 5014100275929677761}
+  - component: {fileID: 5115337759146338312}
   m_Layer: 0
   m_Name: PickupZone
   m_TagString: Untagged
@@ -128,9 +128,9 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10.14, y: 12.48476, z: 1}
-  m_Center: {x: 0.011189222, y: 2.4, z: 0}
---- !u!114 &5014100275929677761
+  m_Size: {x: 10.14, y: 10.416552, z: 1}
+  m_Center: {x: 0.011188983, y: 1.3658946, z: -1.5355858e-10}
+--- !u!114 &5115337759146338312
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,16 +139,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 3775096624762937715}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6344976416bcc674d97e5fabc52f3cd0, type: 3}
+  m_Script: {fileID: 11500000, guid: e05504cc3a958684ba203a7e8686f3cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameMode: 2
-  TimeGained: 0
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 8192
-  CollectVFXSpawnPoint: {fileID: 0}
-  CollectSound: {fileID: 0}
-  active: 1
-  finishLap: 0
-  lapOverNextPass: 0
