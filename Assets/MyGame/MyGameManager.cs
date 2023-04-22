@@ -24,8 +24,11 @@ public class MyGameManager : MonoBehaviour
     public float deliveryTimeout = 30.0f;
     public float pickupTimeout = 30.0f;
 
+    public int deliveryPoints = 10;
+
     private State _currentState = State.PickingUp;
 
+    private int _score = 0;
     private float _timer = 0.0f;
 
     // Start is called before the first frame update
@@ -60,6 +63,8 @@ public class MyGameManager : MonoBehaviour
     {
         if (zone == currentDeliveryZone)
         {
+            _score += deliveryPoints;
+
             deactivateAllZones();
             selectRandomPickupZone();
         }
@@ -106,6 +111,8 @@ public class MyGameManager : MonoBehaviour
         // check if time ran out
         if (_timer < 0.0f)
         {
+            _score -= deliveryPoints;
+
             deactivateAllZones();
             selectRandomPickupZone();
         }
@@ -119,5 +126,7 @@ public class MyGameManager : MonoBehaviour
         {
             _gameUI.SetPickupClockTime(_timer);
         }
+
+        _gameUI.SetGameScore(_score);
     }
 }

@@ -41,6 +41,8 @@ public class DeliveryZone : MonoBehaviour
         {
             if (this._isActivated)
             {
+                Destroy(other.gameObject);
+
                 this.OnPackageReceived(this);
             }
         }

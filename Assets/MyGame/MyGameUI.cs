@@ -7,6 +7,9 @@ using UnityEngine;
 public class MyGameUI : MonoBehaviour
 {
     public TextMeshProUGUI gameClockComponent;
+    public TextMeshProUGUI gameScoreComponent;
+
+    private int _score;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +21,18 @@ public class MyGameUI : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void SetGameScore(int score)
+    {
+        if (_score == score)
+        {
+            return;
+        }
+
+        _score = score;
+
+        gameScoreComponent.text = "Score: " + score.ToString("###");
     }
 
     public void SetGameClockTime(string message, float time)
