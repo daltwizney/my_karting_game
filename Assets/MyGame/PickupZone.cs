@@ -5,9 +5,13 @@ using UnityEngine;
 
 public class PickupZone : MonoBehaviour
 {
-    public Action OnPackagePickedUp;
+    public Action<PickupZone> OnPackagePickedUp;
 
     public bool hasPackage = false;
+
+    public ParticleSystem activationFX;
+
+    private bool _isActivated = false;
 
     // Start is called before the first frame update
     void Start()
@@ -25,17 +29,23 @@ public class PickupZone : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Debug.Log("player ran through me!");
+            if (this._isActivated)
+            {
+                this.OnPackagePickedUp(this);
+            }
         }
     }
 
     public void Activate()
     {
-
+        _isActivated = true;
+        activationFX.gameObject.SetActive(true);
     }
 
     public void Deactivate()
     {
-
+        _isActivated = false;
+        activationFX.gameObject.SetActive(false);
     }
+
 }

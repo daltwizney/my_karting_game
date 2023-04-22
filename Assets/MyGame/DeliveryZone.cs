@@ -5,7 +5,11 @@ using UnityEngine;
 
 public class DeliveryZone : MonoBehaviour
 {
-    public Action OnPackageReceived;
+    public Action<DeliveryZone> OnPackageReceived;
+
+    public ParticleSystem activationFX;
+
+    private bool _isActivated = false;
 
     // Start is called before the first frame update
     void Start()
@@ -21,11 +25,24 @@ public class DeliveryZone : MonoBehaviour
 
     public void Activate()
     {
-
+        _isActivated = true;
+        activationFX.gameObject.SetActive(true);
     }
 
     public void Deactivate()
     {
+        _isActivated = false;
+        activationFX.gameObject.SetActive(false);
+    }
 
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<MyPackage>() != null)
+        {
+            if (this._isActivated)
+            {
+                this.OnPackageReceived(this);
+            }
+        }
     }
 }

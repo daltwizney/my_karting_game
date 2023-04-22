@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -9773,7 +9773,7 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 3f1756d6ce4b936458f912b8ac11617e, type: 2}
-  - {fileID: 2100000, guid: 3f1756d6ce4b936458f912b8ac11617e, type: 2}
+  - {fileID: 2100000, guid: 5e7033781d0579849bd6dd2b92d596af, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11105,7 +11105,7 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 45340
+        atime1: 45350
         atime2: 65535
         atime3: 0
         atime4: 0
@@ -13718,7 +13718,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    minVertexDistance: 0.05
+    minVertexDistance: 0.02
     textureMode: 0
     ribbonCount: 1
     shadowBias: 0.5

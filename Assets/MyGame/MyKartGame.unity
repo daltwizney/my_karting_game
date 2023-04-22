@@ -3338,7 +3338,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   packagePrefab: {fileID: 4543304212024101052, guid: e8906805e666ebf4f8a632cd5f3a807a,
     type: 3}
-  forceStrength: 500
+  forceStrength: 750
   kartRigidbody: {fileID: 4810912517821687698}
 --- !u!1 &850455731
 GameObject:
@@ -6838,6 +6838,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1a15901bbde10d418b425e52ed31b20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deliveryZones: []
+  pickupZones: []
+  currentPickupZone: {fileID: 0}
+  currentDeliveryZone: {fileID: 0}
 --- !u!1001 &1180556201
 PrefabInstance:
   m_ObjectHideFlags: 0
