@@ -2,14 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using System.Linq;
+
 public class MyGameManager : MonoBehaviour
 {
+    enum State
+    {
+        Delivering,
+        PickingUp
+    }
+
+    public MyGameUI _gameUI;
+
     public DeliveryZone[] deliveryZones;
     public PickupZone[] pickupZones;
 
     public PickupZone currentPickupZone = null;
 
     public DeliveryZone currentDeliveryZone = null;
+
+    public float deliveryTimeout = 30.0f;
+    public float pickupTimeout = 30.0f;
+
+    private State _currentState = State.PickingUp;
+
+    private float _timer = 0.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +51,7 @@ public class MyGameManager : MonoBehaviour
     {
         if (zone == currentPickupZone)
         {
-            currentPickupZone.Deactivate();
+            deactivateAllZones();
             selectRandomDeliveryZone();
         }
     }
@@ -43,8 +60,7 @@ public class MyGameManager : MonoBehaviour
     {
         if (zone == currentDeliveryZone)
         {
-            currentDeliveryZone.Deactivate();
-
+            deactivateAllZones();
             selectRandomPickupZone();
         }
     }
@@ -56,6 +72,10 @@ public class MyGameManager : MonoBehaviour
         currentPickupZone = pickupZones[index];
 
         currentPickupZone.Activate();
+
+        _currentState = State.PickingUp;
+
+        _timer = pickupTimeout;
     }
 
     void selectRandomDeliveryZone()
@@ -64,12 +84,40 @@ public class MyGameManager : MonoBehaviour
 
         currentDeliveryZone = deliveryZones[index];
 
+        _currentState = State.Delivering;
+
         currentDeliveryZone.Activate();
+
+        _timer = deliveryTimeout;
+    }
+
+    void deactivateAllZones()
+    {
+        deliveryZones.ToList().ForEach(zone => zone.Deactivate());
+        pickupZones.ToList().ForEach(zone => zone.Deactivate());
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        // update timer
+        _timer -= Time.deltaTime;
+
+        // check if time ran out
+        if (_timer < 0.0f)
+        {
+            deactivateAllZones();
+            selectRandomPickupZone();
+        }
+
+        // update UI
+        if (_currentState == State.Delivering)
+        {
+            _gameUI.SetDeliveryClockTime(_timer);
+        }
+        else if (_currentState == State.PickingUp)
+        {
+            _gameUI.SetPickupClockTime(_timer);
+        }
     }
 }
