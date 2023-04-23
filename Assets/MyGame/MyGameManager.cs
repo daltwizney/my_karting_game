@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class MyGameManager : MonoBehaviour
 {
@@ -40,6 +41,8 @@ public class MyGameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1;
+
         deliveryZones = GameObject.FindObjectsOfType<DeliveryZone>();
         pickupZones = GameObject.FindObjectsOfType<PickupZone>();
 
@@ -54,6 +57,11 @@ public class MyGameManager : MonoBehaviour
         }
 
         selectRandomPickupZone();
+    }
+
+    public void ReloadLevel()
+    {
+        SceneManager.LoadScene("MyKartGame");
     }
 
     void handlePackagePickup(PickupZone zone)
@@ -82,15 +90,19 @@ public class MyGameManager : MonoBehaviour
 
         if (_currentState == State.Delivering)
         {
+            gameUI.SetPackageGunEnabled(true);
             packageGun.enabled = true;
         }
         else if (_currentState == State.PickingUp)
         {
+            gameUI.SetPackageGunEnabled(false);
+
             _deliveriesAttempted++;
 
             if (_deliveriesAttempted > this.totalDeliveriesPerGame)
             {
                 Debug.Log("Game Over - you won!");
+                gameUI.ShowGameOverMenu();
                 Time.timeScale = 0.0f;
             }
 

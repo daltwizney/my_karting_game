@@ -3,24 +3,39 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MyGameUI : MonoBehaviour
 {
     public TextMeshProUGUI gameClockComponent;
     public TextMeshProUGUI gameScoreComponent;
 
-    private int _score;
+    public Image packageGunEnabledImage;
+
+    public GameObject gameOverMenu;
+
+    private int _score = -1;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        this.SetGameScore(0);
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void ShowGameOverMenu()
+    {
+        this.gameOverMenu.SetActive(true);
+    }
+
+    public void SetPackageGunEnabled(bool enabled)
+    {
+        this.packageGunEnabledImage.enabled = enabled;
     }
 
     public void SetGameScore(int score)
@@ -32,7 +47,14 @@ public class MyGameUI : MonoBehaviour
 
         _score = score;
 
-        gameScoreComponent.text = "Score: " + score.ToString("###");
+        if (_score == 0)
+        {
+            gameScoreComponent.text = "Score: 000";
+        }
+        else
+        {
+            gameScoreComponent.text = "Score: " + score.ToString("###");
+        }
     }
 
     public void SetGameClockTime(string message, float time)
