@@ -12,7 +12,9 @@ public class MyGameManager : MonoBehaviour
         PickingUp
     }
 
-    public MyGameUI _gameUI;
+    public MyGameUI gameUI;
+
+    public MyPackageGun packageGun;
 
     public DeliveryZone[] deliveryZones;
     public PickupZone[] pickupZones;
@@ -26,10 +28,14 @@ public class MyGameManager : MonoBehaviour
 
     public int deliveryPoints = 10;
 
+    public int totalDeliveriesPerGame = 3;
+
     private State _currentState = State.PickingUp;
 
     private int _score = 0;
     private float _timer = 0.0f;
+
+    private int _deliveriesAttempted = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -70,26 +76,48 @@ public class MyGameManager : MonoBehaviour
         }
     }
 
+    void setState(State newState)
+    {
+        _currentState = newState;
+
+        if (_currentState == State.Delivering)
+        {
+            packageGun.enabled = true;
+        }
+        else if (_currentState == State.PickingUp)
+        {
+            _deliveriesAttempted++;
+
+            if (_deliveriesAttempted > this.totalDeliveriesPerGame)
+            {
+                Debug.Log("Game Over - you won!");
+                Time.timeScale = 0.0f;
+            }
+
+            packageGun.enabled = false;
+        }
+    }
+
     void selectRandomPickupZone()
     {
-        int index = Random.Range(0, pickupZones.Length - 1);
+        int index = Random.Range(0, pickupZones.Length);
 
         currentPickupZone = pickupZones[index];
 
         currentPickupZone.Activate();
 
-        _currentState = State.PickingUp;
+        this.setState(State.PickingUp);
 
         _timer = pickupTimeout;
     }
 
     void selectRandomDeliveryZone()
     {
-        int index = Random.Range(0, deliveryZones.Length - 1);
+        int index = Random.Range(0, deliveryZones.Length);
 
         currentDeliveryZone = deliveryZones[index];
 
-        _currentState = State.Delivering;
+        this.setState(State.Delivering);
 
         currentDeliveryZone.Activate();
 
@@ -120,13 +148,13 @@ public class MyGameManager : MonoBehaviour
         // update UI
         if (_currentState == State.Delivering)
         {
-            _gameUI.SetDeliveryClockTime(_timer);
+            gameUI.SetDeliveryClockTime(_timer);
         }
         else if (_currentState == State.PickingUp)
         {
-            _gameUI.SetPickupClockTime(_timer);
+            gameUI.SetPickupClockTime(_timer);
         }
 
-        _gameUI.SetGameScore(_score);
+        gameUI.SetGameScore(_score);
     }
 }
