@@ -14,9 +14,13 @@ public class MyGameUI : MonoBehaviour
 
     public Button unpauseButton;
 
+    public TextMeshProUGUI remainingDeliveryAttemptsComponent;
+
     public GameObject pauseMenu;
 
     public GameObject gameOverMenu;
+
+    private int _remainingDeliveryAttempts = -1;
 
     private int _score = -1;
 
@@ -50,6 +54,26 @@ public class MyGameUI : MonoBehaviour
     public void SetPackageGunEnabled(bool enabled)
     {
         this.packageGunEnabledImage.enabled = enabled;
+    }
+
+    public void SetRemainingDeliveryAttempts(int value)
+    {
+        if (value == _remainingDeliveryAttempts)
+        {
+            return;
+        }
+
+        _remainingDeliveryAttempts = value;
+
+        if (_remainingDeliveryAttempts == 0)
+        {
+            remainingDeliveryAttemptsComponent.text = "Remaining Delivery Attempts: 00";
+        }
+        else
+        {
+            remainingDeliveryAttemptsComponent.text = "Remaining Delivery Attempts: " + _remainingDeliveryAttempts.ToString("##");
+        }
+
     }
 
     public void SetGameScore(int score)

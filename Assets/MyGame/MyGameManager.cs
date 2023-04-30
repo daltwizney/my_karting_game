@@ -59,6 +59,8 @@ public class MyGameManager : MonoBehaviour
 
         selectRandomPickupZone();
 
+        this.gameUI.SetRemainingDeliveryAttempts(this.totalDeliveriesPerGame);
+
         this.gameUI.unpauseButton.onClick.AddListener(this.unpauseGame);
     }
 
@@ -101,6 +103,8 @@ public class MyGameManager : MonoBehaviour
             gameUI.SetPackageGunEnabled(false);
 
             _deliveriesAttempted++;
+
+            this.gameUI.SetRemainingDeliveryAttempts(this.totalDeliveriesPerGame - _deliveriesAttempted);
 
             if (_deliveriesAttempted > this.totalDeliveriesPerGame)
             {
