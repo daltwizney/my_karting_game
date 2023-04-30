@@ -91,20 +91,18 @@ public class MyGameManager : MonoBehaviour
 
     void setState(State newState)
     {
-        _currentState = newState;
-
-        if (_currentState == State.Delivering)
+        if (newState == State.Delivering)
         {
             gameUI.SetPackageGunEnabled(true);
             packageGun.enabled = true;
         }
-        else if (_currentState == State.PickingUp)
+        else if (newState == State.PickingUp)
         {
             gameUI.SetPackageGunEnabled(false);
 
             _deliveriesAttempted++;
 
-            this.gameUI.SetRemainingDeliveryAttempts(this.totalDeliveriesPerGame - _deliveriesAttempted);
+            this.gameUI.SetRemainingDeliveryAttempts(this.totalDeliveriesPerGame - _deliveriesAttempted + 1);
 
             if (_deliveriesAttempted > this.totalDeliveriesPerGame)
             {
@@ -115,6 +113,8 @@ public class MyGameManager : MonoBehaviour
 
             packageGun.enabled = false;
         }
+
+        _currentState = newState;
     }
 
     void selectRandomPickupZone()
