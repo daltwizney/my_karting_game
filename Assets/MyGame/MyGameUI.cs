@@ -12,6 +12,10 @@ public class MyGameUI : MonoBehaviour
 
     public Image packageGunEnabledImage;
 
+    public Button unpauseButton;
+
+    public GameObject pauseMenu;
+
     public GameObject gameOverMenu;
 
     private int _score = -1;
@@ -26,6 +30,16 @@ public class MyGameUI : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void ShowPauseMenu()
+    {
+        this.pauseMenu.SetActive(true);
+    }
+
+    public void HidePauseMenu()
+    {
+        this.pauseMenu.SetActive(false);
     }
 
     public void ShowGameOverMenu()

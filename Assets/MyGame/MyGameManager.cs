@@ -10,7 +10,8 @@ public class MyGameManager : MonoBehaviour
     enum State
     {
         Delivering,
-        PickingUp
+        PickingUp,
+        GamePaused
     }
 
     public MyGameUI gameUI;
@@ -57,6 +58,8 @@ public class MyGameManager : MonoBehaviour
         }
 
         selectRandomPickupZone();
+
+        this.gameUI.unpauseButton.onClick.AddListener(this.unpauseGame);
     }
 
     public void ReloadLevel()
@@ -142,6 +145,12 @@ public class MyGameManager : MonoBehaviour
         pickupZones.ToList().ForEach(zone => zone.Deactivate());
     }
 
+    void unpauseGame()
+    {
+        Time.timeScale = 1;
+        this.gameUI.HidePauseMenu();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -168,5 +177,13 @@ public class MyGameManager : MonoBehaviour
         }
 
         gameUI.SetGameScore(_score);
+
+        // handle game controls
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
+        {
+            // pause game
+            Time.timeScale = 0;
+            this.gameUI.ShowPauseMenu();
+        }
     }
 }
