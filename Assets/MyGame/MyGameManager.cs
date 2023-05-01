@@ -66,7 +66,7 @@ public class MyGameManager : MonoBehaviour
 
     public void ReloadLevel()
     {
-        SceneManager.LoadScene("MyKartGame");
+        SceneManager.LoadScene("DeliveryDriverGame");
     }
 
     void handlePackagePickup(PickupZone zone)
